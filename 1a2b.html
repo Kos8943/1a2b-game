@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1a2b</title>
+    <!-- Bootstraps -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+    <!-- Jquery -->
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+    <style>
+      body {
+        background-color: #555;
+      }
+
+      .row {
+        margin: 0;
+      }
+
+      .area {
+        margin-top: 80px;
+      }
+
+      .phone {
+        width: 330px;
+        height: 600px;
+        /* margin: auto; */
+        border-radius: 30px;
+        border: 5px solid rgb(236, 177, 172);
+        background-color: #333;
+      }
+
+      .bangs {
+        width: 130px;
+        height: 23px;
+        background-color: #111;
+        margin: auto;
+        border-radius: 0 0 18px 18px;
+        position: relative;
+      }
+
+      .frontCamera {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #333;
+        position: absolute;
+        top: 50%;
+        left: 70%;
+        transform: translateY(-50%);
+      }
+
+      .topicArea {
+        visibility: hidden;
+      }
+
+      .topic {
+        color: #66ff59;
+        font-size: 24px;
+        letter-spacing: 5px;
+        margin-bottom: 10%;
+      }
+
+      .answer {
+        width: 50px;
+        height: 80px;
+        color: #fff;
+        text-align: center;
+        font-size: 55px;
+        border-bottom: 5px solid #fff;
+        margin: 10% 0 10% 0;
+      }
+
+      .keyboardArea {
+        padding: 10px 0 5px 20px;
+        /* background-color: #faf; */
+      }
+
+      .keyboard {
+        color: #fff;
+        width: 70px;
+        height: 70px;
+        font-size: 50px;
+        text-align: center;
+        border-radius: 15px;
+        background-color: #555;
+      }
+
+      .font {
+        font-size: 24px;
+        padding-top: 16px;
+      }
+
+      .answerMemo1 {
+        color: #fff;
+        margin-left: 15px;
+        font-size: 30px;
+        /* letter-spacing: 5px; */
+      }
+
+      .answerMemo2 {
+        color: #fff;
+        margin-left: 15px;
+        font-size: 30px;
+        /* letter-spacing: 5px; */
+      }
+
+      .answerMemo3 {
+        color: #fff;
+        margin-left: 15px;
+        font-size: 30px;
+        /* letter-spacing: 5px; */
+      }
+
+      .answerMemo4 {
+        color: #fff;
+        margin-left: 15px;
+        font-size: 30px;
+        /* letter-spacing: 5px; */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="d-flex justify-content-center area">
+      <div class="phone">
+        <div class="bangs">
+          <div class="frontCamera"></div>
+        </div>
+        <div class="d-flex justify-content-center topicArea" id="topicArea">
+          <div class="topic" id="topic1"></div>
+          <div class="topic" id="topic2"></div>
+          <div class="topic" id="topic3"></div>
+          <div class="topic" id="topic4"></div>
+        </div>
+
+        <div class="d-flex justify-content-around">
+          <div class="answer" id="answer1"></div>
+          <div class="answer" id="answer2"></div>
+          <div class="answer" id="answer3"></div>
+          <div class="answer" id="answer4"></div>
+        </div>
+        <div class="row">
+          <div class="col-4 keyboardArea">
+            <div class="keyboard" id="1" onclick="inserAnswer(1)">1</div>
+          </div>
+          <div class="col-4 keyboardArea">
+            <div class="keyboard" id="2" onclick="inserAnswer(2)">2</div>
+          </div>
+          <div class="col-4 keyboardArea">
+            <div class="keyboard" id="3" onclick="inserAnswer(3)">3</div>
+          </div>
+          <div class="col-4 keyboardArea">
+            <div class="keyboard" id="4" onclick="inserAnswer(4)">4</div>
+          </div>
+          <div class="col-4 keyboardArea">
+            <div class="keyboard" id="5" onclick="inserAnswer(5)">5</div>
+          </div>
+          <div class="col-4 keyboardArea">
+            <div class="keyboard" id="6" onclick="inserAnswer(6)">6</div>
+          </div>
+          <div class="col-4 keyboardArea">
+            <div class="keyboard" id="7" onclick="inserAnswer(7)">7</div>
+          </div>
+          <div class="col-4 keyboardArea">
+            <div class="keyboard" id="8" onclick="inserAnswer(8)">8</div>
+          </div>
+          <div class="col-4 keyboardArea">
+            <div class="keyboard" id="9" onclick="inserAnswer(9)">9</div>
+          </div>
+          <div class="col-4 keyboardArea" onclick="deleteAnswer()">
+            <div class="keyboard font">刪除</div>
+          </div>
+          <div class="col-4 keyboardArea">
+            <div class="keyboard" id="0" onclick="inserAnswer(0)">0</div>
+          </div>
+          <div class="col-4 keyboardArea" onclick="enterAnswer()">
+            <div class="keyboard font">輸入</div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex">
+        <div class="answerMemo1" id="answerMemo1"></div>
+        <div class="answerMemo2" id="answerMemo2"></div>
+        <div class="answerMemo3" id="answerMemo3"></div>
+        <div class="answerMemo4" id="answerMemo4"></div>
+      </div>
+      <!-- <div class="d-flex">
+          <div class="answerMemo" id="answerMemo5">1</div>
+        <div class="answerMemo" id="answerMemo6">2</div>
+        <div class="answerMemo" id="answerMemo7">3</div>
+        <div class="answerMemo" id="answerMemo8">4</div>
+      </div>
+      <div class="d-flex">
+          <div class="answerMemo" id="answerMemo9">1</div>
+        <div class="answerMemo" id="answerMemo10">2</div>
+        <div class="answerMemo" id="answerMemo11">3</div>
+        <div class="answerMemo" id="answerMemo12">4</div>
+      </div> -->
+    </div>
+
+    <!-- <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+      integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+      integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+      crossorigin="anonymous"
+    ></script> -->
+
+    <script>
+      let topic1 = document.getElementById("topic1");
+      let topic2 = document.getElementById("topic2");
+      let topic3 = document.getElementById("topic3");
+      let topic4 = document.getElementById("topic4");
+      let answer1 = document.getElementById("answer1");
+      let answer2 = document.getElementById("answer2");
+      let answer3 = document.getElementById("answer3");
+      let answer4 = document.getElementById("answer4");
+      let answerMemo1 = document.getElementById("answerMemo1");
+      let answerMemo2 = document.getElementById("answerMemo2");
+      let answerMemo3 = document.getElementById("answerMemo3");
+      let answerMemo4 = document.getElementById("answerMemo4");
+      let topicArea = document.getElementById("topicArea");
+
+      let a = [];
+      // 隨機出題
+      for (let i = 0; i < 10; i++) {
+        a.push(i);
+      }
+
+      a.sort(function () {
+        return Math.random() - 0.5;
+      });
+
+      a.length = 4;
+
+      topic1.innerHTML = a[0];
+      topic2.innerHTML = a[1];
+      topic3.innerHTML = a[2];
+      topic4.innerHTML = a[3];
+
+      // 輸入數字
+      function inserAnswer(value) {
+        if (
+          answer3.innerHTML.length == 1 &&
+          answer2.innerHTML.length == 1 &&
+          answer1.innerHTML.length == 1 &&
+          answer4.innerHTML.length == 0
+        ) {
+          answer4.innerHTML = value;
+        }
+
+        if (
+          answer2.innerHTML.length == 1 &&
+          answer1.innerHTML.length == 1 &&
+          answer3.innerHTML.length == 0
+        ) {
+          answer3.innerHTML = value;
+        }
+
+        if (answer1.innerHTML.length == 1 && answer2.innerHTML.length == 0) {
+          answer2.innerHTML = value;
+        }
+
+        if (answer1.innerHTML.length == 0) {
+          answer1.innerHTML = value;
+        }
+      }
+
+      //  刪除
+      function deleteAnswer() {
+        if (answer1.innerHTML.length == 1 && answer2.innerHTML.length == 0) {
+          answer1.innerHTML = null;
+        }
+
+        if (
+          answer1.innerHTML.length == 1 &&
+          answer2.innerHTML.length == 1 &&
+          answer3.innerHTML.length == 0
+        ) {
+          answer2.innerHTML = null;
+        }
+
+        if (
+          answer2.innerHTML.length == 1 &&
+          answer1.innerHTML.length == 1 &&
+          answer3.innerHTML.length == 1 &&
+          answer4.innerHTML.length == 0
+        ) {
+          answer3.innerHTML = null;
+        }
+
+        if (
+          answer3.innerHTML.length == 1 &&
+          answer2.innerHTML.length == 1 &&
+          answer1.innerHTML.length == 1 &&
+          answer4.innerHTML.length == 1
+        ) {
+          answer4.innerHTML = null;
+        }
+      }
+
+      function enterAnswer() {
+        //   答題記錄1
+
+        // 是B的情況
+        if (
+          answer1.innerHTML === topic2.innerHTML ||
+          answer1.innerHTML === topic3.innerHTML ||
+          answer1.innerHTML === topic4.innerHTML
+        ) {
+          answerMemo1.innerHTML = answer1.innerHTML;
+          answerMemo1.style["color"] = "yellow";
+        }
+
+        //  都不是的情況
+        if (
+          answer1.innerHTML !== topic2.innerHTML &&
+          answer1.innerHTML !== topic3.innerHTML &&
+          answer1.innerHTML !== topic4.innerHTML
+        ) {
+          answerMemo1.innerHTML = answer1.innerHTML;
+          answerMemo1.style["color"] = "red";
+          console.log("1:", answer1.innerHTML);
+        }
+
+        // 是A的情況
+        if (answer1.innerHTML == topic1.innerHTML) {
+          answerMemo1.innerHTML = answer1.innerHTML;
+          answerMemo1.style["color"] = " #66ff59";
+        }
+
+        //   答題記錄2
+
+        // 是B的情況
+        if (
+          answer2.innerHTML === topic1.innerHTML ||
+          answer2.innerHTML === topic3.innerHTML ||
+          answer2.innerHTML === topic4.innerHTML
+        ) {
+          answerMemo2.innerHTML = answer2.innerHTML;
+          answerMemo2.style["color"] = "yellow";
+        }
+
+        //  都不是的情況
+        if (
+          answer2.innerHTML !== topic1.innerHTML &&
+          answer2.innerHTML !== topic3.innerHTML &&
+          answer2.innerHTML !== topic4.innerHTML
+        ) {
+          answerMemo2.innerHTML = answer2.innerHTML;
+          answerMemo2.style["color"] = "red";
+        }
+
+        // 是A的情況
+        if (answer2.innerHTML == topic2.innerHTML) {
+          answerMemo2.innerHTML = answer2.innerHTML;
+          answerMemo2.style["color"] = " #66ff59";
+        }
+        //   答題記錄3
+
+        // 是B的情況
+        if (
+          answer3.innerHTML === topic1.innerHTML ||
+          answer3.innerHTML === topic2.innerHTML ||
+          answer3.innerHTML === topic4.innerHTML
+        ) {
+          answerMemo3.innerHTML = answer3.innerHTML;
+          answerMemo3.style["color"] = "yellow";
+        }
+
+        //  都不是的情況
+        if (
+          answer3.innerHTML !== topic1.innerHTML &&
+          answer3.innerHTML !== topic2.innerHTML &&
+          answer3.innerHTML !== topic4.innerHTML
+        ) {
+          answerMemo3.innerHTML = answer3.innerHTML;
+          answerMemo3.style["color"] = "red";
+        }
+
+        // 是A的情況
+        if (answer3.innerHTML == topic3.innerHTML) {
+          answerMemo3.innerHTML = answer3.innerHTML;
+          answerMemo3.style["color"] = " #66ff59";
+        }
+        //   答題記錄4
+
+        // 是B的情況
+        if (
+          answer4.innerHTML === topic1.innerHTML ||
+          answer4.innerHTML === topic2.innerHTML ||
+          answer4.innerHTML === topic3.innerHTML
+        ) {
+          answerMemo4.innerHTML = answer4.innerHTML;
+          answerMemo4.style["color"] = "yellow";
+        }
+
+        //  都不是的情況
+        if (
+          answer4.innerHTML !== topic1.innerHTML &&
+          answer4.innerHTML !== topic2.innerHTML &&
+          answer4.innerHTML !== topic3.innerHTML
+        ) {
+          answerMemo4.innerHTML = answer4.innerHTML;
+          answerMemo4.style["color"] = "red";
+        }
+
+        // 是A的情況
+        if (answer4.innerHTML == topic4.innerHTML) {
+          answerMemo4.innerHTML = answer4.innerHTML;
+          answerMemo4.style["color"] = " #66ff59";
+        }
+
+        // 過關
+        if (
+          answer1.innerHTML == topic1.innerHTML &&
+          answer2.innerHTML == topic2.innerHTML &&
+          answer3.innerHTML == topic3.innerHTML &&
+          answer4.innerHTML == topic4.innerHTML
+        ) {
+          topicArea.style.visibility = "visible";
+          setTimeout(() => alert("恭喜過關~遊戲將重新開始"), 500);
+          setTimeout(() => window.location.reload(), 3000);
+        }
+        answer1.innerHTML = null;
+        answer2.innerHTML = null;
+        answer3.innerHTML = null;
+        answer4.innerHTML = null;
+      }
+    </script>
+  </body>
+</html>
